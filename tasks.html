@@ -1,0 +1,179 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>TASKS - LifeOS - 編集削除大型化</title>
+<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,'Noto Sans JP',sans-serif;background:#f2f4f8;color:#111827} :root{--primary:#1e3a8a}
+.topbar{position:sticky;top:0;z-index:50;background:#fff;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:1px solid #e5e7eb}
+.hamburger{width:48px;height:48px;border:none;background:#fff;border-radius:14px;display:grid;place-items:center}
+.logo{display:flex;align-items:center;gap:12px;font-weight:900;font-size:22px}.logo-L{width:40px;height:40px;background:var(--primary);color:#fff;border-radius:12px;display:grid;place-items:center;font-size:20px;font-weight:900}
+.drawer{position:fixed;top:0;left:0;bottom:0;width:88%;max-width:340px;background:#fff;z-index:70;transform:translateX(-100%);transition:.3s;display:flex;flex-direction:column}.drawer.show{transform:translateX(0)}.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:60;opacity:0;pointer-events:none;transition:.25s}.overlay.show{opacity:1;pointer-events:auto}
+.drawer-head{padding:22px 16px;border-bottom:1px solid #f1f5f9;display:flex;gap:14px;align-items:center}.drawer-avatar{width:52px;height:52px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font-weight:900;font-size:18px}.drawer-body{flex:1;overflow:auto;padding:14px 10px}.drawer-item{display:flex;align-items:center;gap:14px;padding:16px 12px;border-radius:14px;text-decoration:none;color:inherit}.drawer-item.active{background:#f1f5ff}.drawer-item-icon{width:44px;height:44px;border-radius:14px;background:#f3f4f6;display:grid;place-items:center;font-size:20px}.drawer-item-label{font-size:16px;font-weight:700}
+.main{padding:0 0 90px}.banner{background:var(--primary);color:#fff;padding:18px 16px 14px;display:flex;align-items:flex-end;justify-content:space-between}.banner-kicker{font-size:11px;letter-spacing:0.08em;opacity:0.7;font-weight:700}.banner-title{font-size:26px;font-weight:900}.banner-count{font-size:34px;font-weight:900}.banner-count-sub{font-size:11px;opacity:0.7}
+.list-wrap{padding:12px 10px}
+.filter-bar{display:flex;gap:10px;margin-bottom:14px}
+.filter-btn{flex:1;height:48px;border-radius:999px;border:1.5px solid #e5e7eb;background:#fff;color:#6b7280;font-size:15px;font-weight:700}
+.filter-btn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
+.task-card{background:#fff;border-radius:18px;border:1px solid #eef2f7;box-shadow:0 2px 12px rgba(0,0,0,0.04);padding:18px;margin-bottom:14px;border-left:6px solid var(--primary);position:relative}
+.task-title{font-size:16px;font-weight:800;line-height:1.4}
+.task-meta{font-size:12px;color:#6b7280;margin-top:6px;display:flex;gap:6px;flex-wrap:wrap}
+.btn-open{padding:6px 14px;border-radius:999px;border:1.5px solid var(--primary);background:#fff;color:var(--primary);font-size:11px;font-weight:700}
+.container-form{background:#fff;border-radius:18px;padding:16px;margin-bottom:12px;border:1px solid #eef2f7}
+label{font-size:12px;font-weight:700;color:#374151;margin:10px 0 6px;display:block}
+input[type="text"],textarea{width:100%;padding:14px;border:1.5px solid #dbe2ef;border-radius:12px;font-size:15px}
+textarea{min-height:70px;resize:vertical}
+.btn-primary{width:100%;padding:14px;border:none;border-radius:12px;background:var(--primary);color:#fff;font-weight:800;font-size:15px;margin-top:10px}
+.btn-secondary{width:100%;padding:12px;border:1px solid #e5e7eb;border-radius:12px;background:#fff;color:#6b7280;font-weight:700;margin-top:8px}
+.status{text-align:center;font-size:12px;color:#16a34a;margin-bottom:10px;font-weight:600}
+/* 編集・削除ボタン 大型化 48px */
+.task-actions{display:flex;gap:12px;margin-top:16px;justify-content:flex-end}
+.btn-small{height:48px;min-width:96px;padding:0 26px;border-radius:999px;border:none;font-size:15px;font-weight:800;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 3px 12px rgba(0,0,0,0.08);transition:0.15s}
+.btn-small:active{transform:scale(0.95)}
+.btn-edit{background:#fef3c7;color:#92400e;border:2px solid #fcd34d}
+.btn-edit:hover{background:#fde68a}
+.btn-del{background:#fee2e2;color:#991b1b;border:2px solid #fecaca}
+.btn-del:hover{background:#fecaca}
+</style></head><body>
+<header class="topbar"><div style="display:flex;align-items:center;gap:12px"><button class="hamburger" id="btnMenu"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><div class="logo"><div class="logo-L">L</div> LifeOS</div></div><button onclick="window.open('https://docs.google.com/spreadsheets/d/117gRLXvaCdrgxFd5Xlcyo396ndc79RbyxV6wENniKuQ/edit?usp=drive_link','_blank')" class="btn-open">SS開く</button></header>
+<div class="overlay" id="overlay"></div><nav class="drawer" id="drawer"><div class="drawer-head"><div class="drawer-avatar">S</div><div><div style="font-weight:800">Shimizu</div></div></div>
+<div class="drawer-body">
+<a href="index.html" style="text-decoration:none;color:inherit"><div class="drawer-item"><div class="drawer-item-icon">🏠</div><div><div class="drawer-item-label">HOME</div></div></div></a>
+<a href="tasks.html" style="text-decoration:none;color:inherit"><div class="drawer-item active"><div class="drawer-item-icon">✅</div><div><div class="drawer-item-label">Tasks</div></div></div></a>
+<a href="habits.html" style="text-decoration:none;color:inherit"><div class="drawer-item"><div class="drawer-item-icon">💪</div><div><div class="drawer-item-label">Habits</div></div></div></a>
+<a href="calendar.html" style="text-decoration:none;color:inherit"><div class="drawer-item"><div class="drawer-item-icon">📅</div><div><div class="drawer-item-label">Calendar</div></div></div></a>
+<a href="money.html" style="text-decoration:none;color:inherit"><div class="drawer-item"><div class="drawer-item-icon">💰</div><div><div class="drawer-item-label">Money</div></div></div></a>
+<a href="contacts.html" style="text-decoration:none;color:inherit"><div class="drawer-item"><div class="drawer-item-icon">👥</div><div><div class="drawer-item-label">Contacts</div></div></div></a>
+<a href="content.html" style="text-decoration:none;color:inherit"><div class="drawer-item"><div class="drawer-item-icon">📝</div><div><div class="drawer-item-label">KEEP</div></div></div></a>
+<a href="others.html" style="text-decoration:none;color:inherit"><div class="drawer-item"><div class="drawer-item-icon">⚙️</div><div><div class="drawer-item-label">OTHERS</div></div></div></a>
+</div></nav>
+<main class="main">
+<div class="banner"><div><div class="banner-kicker">TASKS MASTER / 48px大型ボタン・押しやすく</div><div class="banner-title">Tasks</div></div><div style="text-align:right"><div class="banner-count" id="bannerCount">15</div><div class="banner-count-sub">件</div></div></div>
+
+<div class="list-wrap">
+  <div class="filter-bar">
+    <button class="filter-btn active" id="btnWeek" onclick="setFilter('week')">今週</button>
+    <button class="filter-btn" id="btnAll" onclick="setFilter('all')">全体</button>
+  </div>
+  <div id="statusText" class="status">TASKS Master 15件 同期中...</div>
+
+  <div class="container-form">
+    <input type="hidden" id="editRowIndex">
+    <input type="hidden" id="editId">
+    <label>タイトル *</label><input type="text" id="taskTitle" placeholder="例: 天草の契約">
+    <label>内容 / メモ</label><textarea id="taskMemo" placeholder="詳細やメモ"></textarea>
+    <button class="btn-primary" id="submitBtn" onclick="saveTask()">タスクを追加（SSに反映）</button>
+    <button class="btn-secondary" id="cancelBtn" onclick="resetForm()" style="display:none">キャンセル</button>
+  </div>
+
+  <div id="taskList" style="margin-top:12px"></div>
+</div>
+</main>
+<script>
+const GAS_URL = "https://script.google.com/macros/s/AKfycbxeY0ollMVYWklFepuBRnbjdFc9gEu70WWnF_gdf_RRUfAcFTnL6PXdwAGMj0cXPBZueA/exec";
+const drawer=document.getElementById('drawer'),overlay=document.getElementById('overlay'),btn=document.getElementById('btnMenu');
+function openDrawer(){drawer.classList.add('show');overlay.classList.add('show')}
+function closeDrawer(){drawer.classList.remove('show');overlay.classList.remove('show')}
+btn.addEventListener('click',openDrawer);overlay.addEventListener('click',closeDrawer);
+
+let tasks=[],cur='week';
+const fallbackTasks = [
+ {rowIndex:2,id:'T-001',task:'LifeOS秘書 V3 - 朝7時足場3点セット+夜19時チェック',category:'LifeOS',schedule:'2026-10-09',priority:'急ぎ',status:'進行中',memo:'今回',compassTag:'#共創'},
+ {rowIndex:3,id:'T-002',task:'バイク返却フロー 5分短縮化',category:'LOMA/ME',schedule:'2026-10-10',priority:'急ぎ',status:'未着手',memo:'チェックリスト化',compassTag:'#共創'},
+ {rowIndex:4,id:'T-003',task:'AIRA 阿蘇ルート記事 1本公開',category:'AIRA',schedule:'2026-10-12',priority:'時間をとる',status:'未着手',compassTag:'#好奇心'},
+ {rowIndex:5,id:'T-004',task:'レシート撮影→ledger自動化 GAS設置',category:'LifeOS/お金',schedule:'2026-10-09',priority:'急ぎ',status:'未着手',compassTag:'#清算'},
+ {rowIndex:6,id:'T-005',task:'体重70kg台キープ 毎朝測定',category:'健康/習慣',schedule:'毎日',priority:'任せる/後から',status:'習慣',memo:'LifeOS入力',compassTag:'#健康'},
+ {rowIndex:7,id:'T-006',task:'StartupWorldCup 優勝者フォロー連絡',category:'その他',schedule:'2026-10-09',priority:'検討',status:'未着手',memo:'新聞社などメディアに打診',compassTag:'#共創'},
+ {rowIndex:8,id:'T-007',task:'洗濯',category:'LifeOS',schedule:'毎日',priority:'任せる/後から',status:'未着手',memo:'いいにおいで選択しなおし',compassTag:'#健康'},
+ {rowIndex:9,id:'T-008',task:'お金精算 自分 ラブレイブ',category:'LifeOS/お金',schedule:'毎日',priority:'任せる/後から',status:'未着手',compassTag:'#清算'},
+ {rowIndex:10,id:'T-009',task:'動画 Note インスタ投稿',category:'その他/広報',schedule:'毎日',priority:'時間をとる',status:'未着手',memo:'何個も書く',compassTag:'#共創'},
+ {rowIndex:11,id:'T-010',task:'書類整理',category:'LifeOS',schedule:'毎日',priority:'任せる/後から',status:'未着手',compassTag:'#清算'},
+ {rowIndex:12,id:'T-011',task:'部屋の整理',category:'LifeOS',schedule:'毎日',priority:'任せる/後から',status:'未着手',compassTag:'#清算'},
+ {rowIndex:13,id:'T-012',task:'入院金額確認',category:'LifeOS/お金',schedule:'毎日',priority:'時間をとる',status:'未着手',memo:'一度払ってから 市町村で高額医療費の還元',compassTag:'#清算'},
+ {rowIndex:14,id:'T-013',task:'レンガの家',category:'その他',schedule:'毎日',priority:'時間をとる',status:'未着手',memo:'確認',compassTag:'#清算'},
+ {rowIndex:15,id:'T-014',task:'天草の契約',category:'その他',schedule:'2026-10-13 9:00',priority:'時間をとる',status:'未着手',memo:'火曜日に契約書 しまるさんに連絡',compassTag:'#共創'},
+ {rowIndex:16,id:'T-015',task:'久留米警察署',category:'LOMA/ME',schedule:'',priority:'急ぎ',status:'未着手',memo:'徳永さん 書類を作って提出',compassTag:'#共創'},
+];
+function setStatus(t){document.getElementById('statusText').textContent=t;}
+function loadTasks(){
+  setStatus('TASKS Master 同期中...（GAS）');
+  fetch(GAS_URL).then(r=>r.json()).then(data=>{
+    let d = data.filter(x=> x.id && String(x.id).startsWith('T-'));
+    if(d.length>0) tasks=d; else tasks=fallbackTasks;
+    setStatus(`同期完了 ${tasks.length}件`);
+    render();
+  }).catch(e=>{
+    tasks=fallbackTasks;
+    setStatus(`GAS取得失敗 → ローカル15件表示`);
+    render();
+  });
+}
+function setFilter(type){
+  cur=type;
+  document.getElementById('btnWeek').classList.toggle('active', type==='week');
+  document.getElementById('btnAll').classList.toggle('active', type==='all');
+  render();
+}
+function render(){
+  const list=document.getElementById('taskList');
+  const banner=document.getElementById('bannerCount');
+  let filtered = tasks;
+  if(cur==='week'){
+    filtered = tasks.filter(t=> t.status!=='完了');
+    filtered.sort((a,b)=>{
+      const aWeek = a.schedule && (a.schedule.includes('2026-10-') || a.schedule==='毎日') ? 0 : 1;
+      const bWeek = b.schedule && (b.schedule.includes('2026-10-') || b.schedule==='毎日') ? 0 : 1;
+      return aWeek - bWeek;
+    });
+    filtered = filtered.slice(0,8);
+  }
+  if(banner) banner.textContent=filtered.length;
+  let html='';
+  filtered.forEach(t=>{
+    let color='#22c55e';
+    if(t.priority==='急ぎ') color='#ef4444';
+    if(t.priority==='時間をとる') color='#f59e0b';
+    if(t.priority==='検討') color='#3b82f6';
+    html+=`<div class="task-card" style="border-left-color:${color}">
+      <div class="task-title">${esc(t.id)} ${esc(t.task)}</div>
+      <div class="task-meta"><span>${esc(t.category||'')} / ${esc(t.schedule||'未定')} / ${esc(t.priority||'')} / ${esc(t.status||'')}</span></div>
+      <div style="font-size:12px;color:#6b7280;margin-top:6px">${esc(t.memo||t.content||'')}</div>
+      <div class="task-actions">
+        <button class="btn-small btn-edit" onclick="editTask(${t.rowIndex})">編集</button>
+        <button class="btn-small btn-del" onclick="deleteTask(${t.rowIndex})">削除</button>
+      </div>
+    </div>`;
+  });
+  list.innerHTML=html;
+}
+function editTask(rowIndex){
+  const t = tasks.find(x=> x.rowIndex==rowIndex);
+  if(!t){ alert('見つかりません'); return; }
+  document.getElementById('editRowIndex').value=t.rowIndex;
+  document.getElementById('editId').value=t.id;
+  document.getElementById('taskTitle').value=t.task;
+  document.getElementById('taskMemo').value=t.memo||t.content||'';
+  document.getElementById('submitBtn').textContent='変更を保存（SSに反映）';
+  document.getElementById('cancelBtn').style.display='block';
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+function deleteTask(rowIndex){
+  if(!confirm('本当に削除しますか？\nスプレッドシートからも削除されます。')) return;
+  setStatus('🗑 削除中... SSに反映中');
+  fetch(GAS_URL,{method:'POST',body:JSON.stringify({action:'delete',rowIndex: Number(rowIndex)})})
+    .then(r=>r.json()).then(()=>{ resetForm(); loadTasks(); })
+    .catch(e=>{ setStatus('削除失敗: '+e.message); });
+}
+function saveTask(){
+  const rowIndex = document.getElementById('editRowIndex').value;
+  const id = document.getElementById('editId').value;
+  const task = document.getElementById('taskTitle').value.trim();
+  const memo = document.getElementById('taskMemo').value.trim();
+  if(!task){ alert('タイトル必須'); return; }
+  const payload = rowIndex ? {action:'update',rowIndex:Number(rowIndex),id:id,task:task,memo:memo} : {action:'add',task:task,content:memo,memo:memo,priority:'時間をとる',category:'LifeOS',status:'未着手',compassTag:'#共創'};
+  setStatus(rowIndex ? '✏️ 更新中...' : '💾 保存中...');
+  fetch(GAS_URL,{method:'POST',body:JSON.stringify(payload)}).then(r=>r.json()).then(()=>{ resetForm(); loadTasks(); });
+}
+function resetForm(){
+  document.getElementById('editRowIndex').value=''; document.getElementById('editId').value=''; document.getElementById('taskTitle').value=''; document.getElementById('taskMemo').value='';
+  document.getElementById('submitBtn').textContent='タスクを追加（SSに反映）'; document.getElementById('cancelBtn').style.display='none';
+}
+function esc(s){return String(s||'').replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]));}
+loadTasks();
+</script>
+</body></html>
