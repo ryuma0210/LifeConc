@@ -1,0 +1,63 @@
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>OTHERS - LifeOS</title>
+<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,'Noto Sans JP',sans-serif;background:#f2f4f8;color:#111827} :root{--primary:#1e3a8a}
+.topbar{position:sticky;top:0;z-index:50;background:#fff;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:1px solid #e5e7eb}
+.hamburger{width:48px;height:48px;border:none;background:#fff;border-radius:14px;display:grid;place-items:center}
+.logo{display:flex;align-items:center;gap:12px;font-weight:900;font-size:22px}.logo-L{width:40px;height:40px;background:var(--primary);color:#fff;border-radius:12px;display:grid;place-items:center;font-size:20px;font-weight:900}
+.drawer{position:fixed;top:0;left:0;bottom:0;width:88%;max-width:340px;background:#fff;z-index:70;transform:translateX(-100%);transition:.3s;display:flex;flex-direction:column}.drawer.show{transform:translateX(0)}.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:60;opacity:0;pointer-events:none;transition:.25s}.overlay.show{opacity:1;pointer-events:auto}
+.drawer-head{padding:22px 16px;border-bottom:1px solid #f1f5f9;display:flex;gap:14px;align-items:center}.drawer-avatar{width:52px;height:52px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font-weight:900;font-size:18px}.drawer-body{flex:1;overflow:auto;padding:14px 10px}.drawer-item{display:flex;align-items:center;gap:14px;padding:16px 12px;border-radius:14px;text-decoration:none;color:inherit}.drawer-item.active{background:#f1f5ff}.drawer-item-icon{width:44px;height:44px;border-radius:14px;background:#f3f4f6;display:grid;place-items:center;font-size:20px}.drawer-item-label{font-size:16px;font-weight:700}.drawer-item-sub{font-size:12px;color:#9ca3af;margin-top:2px}
+.main{padding:0 0 90px}.banner{background:var(--primary);color:#fff;padding:18px 16px 14px;display:flex;align-items:flex-end;justify-content:space-between}.banner-kicker{font-size:11px;letter-spacing:0.08em;opacity:0.7;font-weight:700}.banner-title{font-size:26px;font-weight:900}.banner-count{font-size:34px;font-weight:900}.banner-count-sub{font-size:11px;opacity:0.7}
+.card{margin:12px 10px;background:#fff;border-radius:18px;border:1px solid #eef2f7;padding:16px;box-shadow:0 2px 12px rgba(0,0,0,0.04)}
+.card-header{display:flex;align-items:center;justify-content:space-between;cursor:pointer}
+.btn-primary{width:100%;padding:14px;background:var(--primary);color:#fff;border:none;border-radius:12px;font-weight:800;font-size:14px}
+</style></head><body>
+<header class="topbar"><div style="display:flex;align-items:center;gap:12px"><button class="hamburger" id="btnMenu"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><div class="logo"><div class="logo-L">L</div> LifeOS</div></div></header>
+<div class="overlay" id="overlay"></div><nav class="drawer" id="drawer"><div class="drawer-head"><div class="drawer-avatar">S</div><div><div style="font-weight:800">Shimizu</div></div></div>
+<div class="drawer-body">
+
+<a href="index.html" style="text-decoration:none;color:inherit"><div class="drawer-item"><div class="drawer-item-icon">🏠</div><div><div class="drawer-item-label">HOME</div></div></div></a>
+<a href="tasks.html" style="text-decoration:none;color:inherit"><div class="drawer-item"><div class="drawer-item-icon">✅</div><div><div class="drawer-item-label">Tasks</div></div></div></a>
+<a href="habits.html" style="text-decoration:none;color:inherit"><div class="drawer-item"><div class="drawer-item-icon">💪</div><div><div class="drawer-item-label">Habits</div></div></div></a>
+<a href="calendar.html" style="text-decoration:none;color:inherit"><div class="drawer-item"><div class="drawer-item-icon">📅</div><div><div class="drawer-item-label">Calendar</div></div></div></a>
+<a href="money.html" style="text-decoration:none;color:inherit"><div class="drawer-item"><div class="drawer-item-icon">💰</div><div><div class="drawer-item-label">Money</div></div></div></a>
+<a href="contacts.html" style="text-decoration:none;color:inherit"><div class="drawer-item"><div class="drawer-item-icon">👥</div><div><div class="drawer-item-label">Contacts</div></div></div></a>
+<a href="content.html" style="text-decoration:none;color:inherit"><div class="drawer-item"><div class="drawer-item-icon">📝</div><div><div class="drawer-item-label">KEEP</div></div></div></a>
+<a href="others.html" style="text-decoration:none;color:inherit"><div class="drawer-item active"><div class="drawer-item-icon">⚙️</div><div><div class="drawer-item-label">OTHERS</div></div></div></a>
+</div></nav>
+<main class="main">
+<div class="banner"><div><div class="banner-kicker">OTHERS / 2項目のみ</div><div class="banner-title">OTHERS</div></div><div style="text-align:right"><div class="banner-count">2</div><div class="banner-count-sub">項目</div></div></div>
+
+<div class="card">
+  <div style="display:flex;align-items:center;gap:12px">
+    <div style="width:44px;height:44px;background:#eef2ff;border-radius:12px;display:grid;place-items:center">📁</div>
+    <div><div style="font-weight:800;font-size:16px">ファイル一覧</div></div>
+  </div>
+  <div style="margin-top:14px">
+    <button class="btn-primary" onclick="location.href='files.html'">📂 ファイル一覧を開く</button>
+  </div>
+</div>
+
+<div class="card" id="cardHelp">
+  <div class="card-header" onclick="toggleCard('help')">
+    <div style="display:flex;align-items:center;gap:12px">
+      <div style="width:44px;height:44px;background:#f3f4f6;border-radius:12px;display:grid;place-items:center">⚙️</div>
+      <div><div style="font-weight:800;font-size:16px">設定 / ヘルプ</div></div>
+    </div>
+    <span id="chev-help">▾</span>
+  </div>
+  <div id="content-help" style="display:none;margin-top:14px;padding-top:14px;border-top:1px solid #f1f5f9">
+    <div style="padding:20px;text-align:center;color:#9ca3af;font-size:13px">QAカードをここに追加予定</div>
+  </div>
+</div>
+
+</main>
+<script>
+const drawer=document.getElementById('drawer'),overlay=document.getElementById('overlay'),btn=document.getElementById('btnMenu');
+function openDrawer(){drawer.classList.add('show');overlay.classList.add('show')}
+function closeDrawer(){drawer.classList.remove('show');overlay.classList.remove('show')}
+btn.addEventListener('click',openDrawer);overlay.addEventListener('click',closeDrawer);
+function toggleCard(id){
+  const c=document.getElementById('content-'+id), chev=document.getElementById('chev-'+id);
+  if(c.style.display==='none'){c.style.display='block';chev.textContent='▴';}else{c.style.display='none';chev.textContent='▾';}
+}
+</script>
+</body></html>
