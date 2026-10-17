@@ -1,93 +1,62 @@
-<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>ファイル一覧 - LifeOS</title>
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>ファイル一覧 - LifeOS FINAL</title>
 <style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,'Noto Sans JP',sans-serif;background:#f2f4f8;color:#111827} :root{--primary:#1e3a8a}
 .topbar{position:sticky;top:0;z-index:50;background:#fff;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:1px solid #e5e7eb}
 .hamburger{width:48px;height:48px;border:none;background:#fff;border-radius:14px;display:grid;place-items:center}
 .logo{display:flex;align-items:center;gap:12px;font-weight:900;font-size:22px}.logo-L{width:40px;height:40px;background:var(--primary);color:#fff;border-radius:12px;display:grid;place-items:center;font-size:20px;font-weight:900}
 .drawer{position:fixed;top:0;left:0;bottom:0;width:88%;max-width:340px;background:#fff;z-index:70;transform:translateX(-100%);transition:.3s;display:flex;flex-direction:column}.drawer.show{transform:translateX(0)}.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:60;opacity:0;pointer-events:none;transition:.25s}.overlay.show{opacity:1;pointer-events:auto}
-.drawer-head{padding:22px 16px;border-bottom:1px solid #f1f5f9;display:flex;gap:14px;align-items:center}.drawer-avatar{width:52px;height:52px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font-weight:900;font-size:18px}.drawer-body{flex:1;overflow:auto;padding:14px 10px}.drawer-item{display:flex;align-items:center;gap:14px;padding:16px 12px;border-radius:14px;text-decoration:none;color:inherit}.drawer-item.active{background:#f1f5ff}.drawer-item-icon{width:44px;height:44px;border-radius:14px;background:#f3f4f6;display:grid;place-items:center;font-size:20px}.drawer-item-label{font-size:16px;font-weight:700}
+.drawer-head{padding:22px 16px;border-bottom:1px solid #f1f5f9;display:flex;gap:14px;align-items:center}.drawer-avatar{width:52px;height:52px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font-weight:900;font-size:18px}
+.drawer-body{flex:1;overflow:auto;padding:14px 10px}.drawer-body a{text-decoration:none;color:inherit}
+.drawer-item{display:flex;align-items:center;gap:14px;padding:16px 12px;border-radius:14px;text-decoration:none;color:inherit}.drawer-item.active{background:#f1f5ff}.drawer-item-icon{width:44px;height:44px;border-radius:14px;background:#f3f4f6;display:grid;place-items:center;font-size:20px}.drawer-item-label{font-size:16px;font-weight:700}
 .main{padding:0 0 90px}.banner{background:var(--primary);color:#fff;padding:18px 16px 14px;display:flex;align-items:flex-end;justify-content:space-between}.banner-kicker{font-size:11px;letter-spacing:0.08em;opacity:0.7;font-weight:700}.banner-title{font-size:26px;font-weight:900}.banner-count{font-size:34px;font-weight:900}.banner-count-sub{font-size:11px;opacity:0.7}
 .card{margin:12px 10px;background:#fff;border-radius:18px;border:1px solid #eef2f7;padding:16px;box-shadow:0 2px 12px rgba(0,0,0,0.04)}
 .file-group-title{font-size:12px;font-weight:800;color:#6b7280;letter-spacing:0.06em;margin:18px 10px 8px}
-.file-item{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid #f3f4f6}
-.file-item:last-child{border:none}
+.file-item{display:flex;align-items:center;gap:12px;padding:14px 0;border-bottom:1px solid #f3f4f6}.file-item:last-child{border:none}
 .file-icon{width:44px;height:44px;border-radius:12px;display:grid;place-items:center;font-size:20px;flex-shrink:0}
 .btn-open{padding:8px 14px;border-radius:999px;border:1.5px solid var(--primary);background:#fff;color:var(--primary);font-weight:700;font-size:12px;flex-shrink:0}
 .btn-open.primary{background:var(--primary);color:#fff}
 .tag{padding:3px 8px;border-radius:999px;font-size:10px;font-weight:700}
 </style></head><body>
-<header class="topbar"><div style="display:flex;align-items:center;gap:12px"><button class="hamburger" id="btnMenu"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><div class="logo"><div class="logo-L">L</div> LifeOS</div></div><button onclick="location.href='others.html'" style="width:48px;height:48px;border:none;background:#f3f4f6;border-radius:14px;font-size:18px">✕</button></header>
-<div class="overlay" id="overlay"></div><nav class="drawer" id="drawer"><div class="drawer-head"><div class="drawer-avatar">S</div><div><div style="font-weight:800">Shimizu</div></div></div>
+<header class="topbar"><div style="display:flex;align-items:center;gap:12px"><button class="hamburger" id="btnMenu"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><div class="logo"><div class="logo-L">L</div> LifeOS FINAL</div></div></header>
+<div class="overlay" id="overlay"></div><nav class="drawer" id="drawer"><div class="drawer-head"><div class="drawer-avatar">S</div><div><div style="font-weight:800">Shimizu</div><div style="font-size:11px;color:#6b7280">FINAL 9リンク統一</div></div></div>
 <div class="drawer-body">
-<a href="index.html" style="text-decoration:none;color:inherit"><div class="drawer-item"><div class="drawer-item-icon">🏠</div><div><div class="drawer-item-label">HOME</div></div></div></a>
-<a href="tasks.html" style="text-decoration:none;color:inherit"><div class="drawer-item"><div class="drawer-item-icon">✅</div><div><div class="drawer-item-label">Tasks</div></div></div></a>
-<a href="habits.html" style="text-decoration:none;color:inherit"><div class="drawer-item"><div class="drawer-item-icon">💪</div><div><div class="drawer-item-label">Habits</div></div></div></a>
-<a href="calendar.html" style="text-decoration:none;color:inherit"><div class="drawer-item"><div class="drawer-item-icon">📅</div><div><div class="drawer-item-label">Calendar</div></div></div></a>
-<a href="money.html" style="text-decoration:none;color:inherit"><div class="drawer-item"><div class="drawer-item-icon">💰</div><div><div class="drawer-item-label">Money</div></div></div></a>
-<a href="contacts.html" style="text-decoration:none;color:inherit"><div class="drawer-item"><div class="drawer-item-icon">👥</div><div><div class="drawer-item-label">Contacts</div></div></div></a>
-<a href="content.html" style="text-decoration:none;color:inherit"><div class="drawer-item"><div class="drawer-item-icon">📝</div><div><div class="drawer-item-label">KEEP</div></div></div></a>
-<a href="others.html" style="text-decoration:none;color:inherit"><div class="drawer-item"><div class="drawer-item-icon">⚙️</div><div><div class="drawer-item-label">OTHERS</div></div></div></a>
+<a href="index.html"><div class="drawer-item"><div class="drawer-item-icon">🏠</div><div><div class="drawer-item-label">HOME</div></div></div></a>
+<a href="tasks.html"><div class="drawer-item"><div class="drawer-item-icon">✅</div><div><div class="drawer-item-label">Tasks</div></div></div></a>
+<a href="habits.html"><div class="drawer-item"><div class="drawer-item-icon">💪</div><div><div class="drawer-item-label">Habits</div></div></div></a>
+<a href="calendar.html"><div class="drawer-item"><div class="drawer-item-icon">📅</div><div><div class="drawer-item-label">Calendar</div></div></div></a>
+<a href="money.html"><div class="drawer-item"><div class="drawer-item-icon">💰</div><div><div class="drawer-item-label">Money</div></div></div></a>
+<a href="contacts.html"><div class="drawer-item"><div class="drawer-item-icon">👥</div><div><div class="drawer-item-label">Contacts</div></div></div></a>
+<a href="content.html"><div class="drawer-item"><div class="drawer-item-icon">📝</div><div><div class="drawer-item-label">KEEP</div></div></div></a>
+<a href="files.html"><div class="drawer-item active"><div class="drawer-item-icon">📁</div><div><div class="drawer-item-label">Files</div></div></div></a>
+<a href="others.html"><div class="drawer-item"><div class="drawer-item-icon">⚙️</div><div><div class="drawer-item-label">OTHERS</div></div></div></a>
 </div></nav>
 <main class="main">
-<div class="banner"><div><div class="banner-kicker">FILE LOCATION / 03_ファイル所在一覧 参照</div><div class="banner-title">ファイル一覧</div></div><div style="text-align:right"><div class="banner-count" id="fileCount">11</div><div class="banner-count-sub">ドキュメント</div></div></div>
-
+<div class="banner"><div><div class="banner-kicker">FILE LOCATION / 03_ファイル所在一覧 / FINAL</div><div class="banner-title">ファイル一覧</div></div><div style="text-align:right"><div class="banner-count" id="fileCount">11</div><div class="banner-count-sub">ドキュメント</div></div></div>
 <div class="file-group-title">📁 フォルダ</div>
-<div class="card" id="group-folder">
-<div class="file-item"><div class="file-icon" style="background:#eef2ff">📁</div><div style="flex:1"><div style="font-weight:800;font-size:14px">LifeOS_Shared</div><div style="font-size:11px;color:#6b7280;margin-top:2px">全共有ファイル置き場 / 清水</div></div><button class="btn-open primary" onclick="openFile('https://drive.google.com/drive/folders/1zyi9QY1r3AXFCIH_F5aC8Rp_1Zmxk2jz')">開く</button></div>
-<div class="file-item"><div class="file-icon" style="background:#eef2ff">📁</div><div style="flex:1"><div style="font-weight:800;font-size:14px">秘書課_情報共有</div><div style="font-size:11px;color:#6b7280;margin-top:2px">秘書課専用共有 / 一号</div></div><button class="btn-open primary" onclick="openFile('https://drive.google.com/drive/folders/1gfVFFQwIg2nnB8c1TI7A1pF__ItWNhId')">開く</button></div>
+<div class="card">
+<div class="file-item"><div class="file-icon" style="background:#eef2ff">📁</div><div style="flex:1"><div style="font-weight:800;font-size:14px">LifeOS_Shared</div><div style="font-size:11px;color:#6b7280;margin-top:2px">全共有ファイル置き場 / 清水</div></div><button class="btn-open primary" onclick="window.open('https://drive.google.com/drive/folders/1zyi9QY1r3AXFCIH_F5aC8Rp_1Zmxk2jz','_blank')">開く</button></div>
+<div class="file-item"><div class="file-icon" style="background:#eef2ff">📁</div><div style="flex:1"><div style="font-weight:800;font-size:14px">秘書課_情報共有</div><div style="font-size:11px;color:#6b7280;margin-top:2px">秘書課専用共有 / 一号</div></div><button class="btn-open primary" onclick="window.open('https://drive.google.com/drive/folders/1gfVFFQwIg2nnB8c1TI7A1pF__ItWNhId','_blank')">開く</button></div>
 </div>
-
 <div class="file-group-title">📊 スプレッドシート / 重要SS</div>
-<div class="card" id="group-ss">
-<div class="file-item"><div class="file-icon" style="background:#dcfce7">📊</div><div style="flex:1"><div style="font-weight:800;font-size:14px">TASKS Master <span class="tag" style="background:#dcfce7;color:#166534">SSOT</span></div><div style="font-size:11px;color:#6b7280;margin-top:2px">タスク正本 SSOT / 117gRLX...</div></div><button class="btn-open primary" onclick="openFile('https://docs.google.com/spreadsheets/d/117gRLXvaCdrgxFd5Xlcyo396ndc79RbyxV6wENniKuQ/edit?usp=drive_link')">開く</button></div>
-<div class="file-item"><div class="file-icon" style="background:#fef3c7">💰</div><div style="flex:1"><div style="font-weight:800;font-size:14px">MONEY Ledger</div><div style="font-size:11px;color:#6b7280;margin-top:2px">清算・家計簿 別SS / 1ZuN...</div></div><button class="btn-open primary" onclick="openFile('https://docs.google.com/spreadsheets/d/1ZuNQva0jRJJ-wJah9JmUArT8gQIlFLnJt59XcSsvfMU/edit')">開く</button></div>
-<div class="file-item"><div class="file-icon" style="background:#e0e7ff">📋</div><div style="flex:1"><div style="font-weight:800;font-size:14px">Base Rules & Shared Config</div><div style="font-size:11px;color:#6b7280;margin-top:2px">ベースルール・共有設定 / 1OrHU...</div></div><button class="btn-open primary" onclick="openFile('https://docs.google.com/spreadsheets/d/1OrHUgzMel3jUygda5HKn2jjxqGEqdYJ0Oqqgj0bcBeg/edit')">開く</button></div>
-<div class="file-item"><div class="file-icon" style="background:#f3f4f6">📄</div><div style="flex:1"><div style="font-weight:800;font-size:14px">03_ファイル所在一覧</div><div style="font-size:11px;color:#6b7280;margin-top:2px">この一覧の参照元 / GAS: fileLocations</div></div><button class="btn-open" onclick="loadFromGas()">更新</button></div>
+<div class="card">
+<div class="file-item"><div class="file-icon" style="background:#dcfce7">📊</div><div style="flex:1"><div style="font-weight:800;font-size:14px">TASKS Master <span class="tag" style="background:#dcfce7;color:#166534">SSOT</span></div><div style="font-size:11px;color:#6b7280;margin-top:2px">タスク正本 SSOT</div></div><button class="btn-open primary" onclick="window.open('https://docs.google.com/spreadsheets/d/117gRLXvaCdrgxFd5Xlcyo396ndc79RbyxV6wENniKuQ/edit','_blank')">開く</button></div>
+<div class="file-item"><div class="file-icon" style="background:#fef3c7">💰</div><div style="flex:1"><div style="font-weight:800;font-size:14px">MONEY Ledger</div><div style="font-size:11px;color:#6b7280;margin-top:2px">清算・家計簿</div></div><button class="btn-open primary" onclick="window.open('https://docs.google.com/spreadsheets/d/1ZuNQva0jRJJ-wJah9JmUArT8gQIlFLnJt59XcSsvfMU/edit','_blank')">開く</button></div>
+<div class="file-item"><div class="file-icon" style="background:#e0e7ff">📋</div><div style="flex:1"><div style="font-weight:800;font-size:14px">Base Rules & Shared Config</div><div style="font-size:11px;color:#6b7280;margin-top:2px">ベースルール・共有設定</div></div><button class="btn-open primary" onclick="window.open('https://docs.google.com/spreadsheets/d/1OrHUgzMel3jUygda5HKn2jjxqGEqdYJ0Oqqgj0bcBeg/edit','_blank')">開く</button></div>
 </div>
-
 <div class="file-group-title">📝 ドキュメント / 重要Doc</div>
-<div class="card" id="group-doc">
-<div class="file-item"><div class="file-icon" style="background:#dbeafe">📝</div><div style="flex:1"><div style="font-weight:800;font-size:14px">ベースルール</div><div style="font-size:11px;color:#6b7280;margin-top:2px">ベースルール詳細 / 清水</div></div><button class="btn-open primary" onclick="openFile('https://docs.google.com/document/d/1Ajt1l8abJflgztV0tybOsECRRWpa8W_dWjhlymztHDo/edit')">開く</button></div>
-<div class="file-item"><div class="file-icon" style="background:#fce7f3">📝</div><div style="flex:1"><div style="font-weight:800;font-size:14px">開発・作業ログ</div><div style="font-size:11px;color:#6b7280;margin-top:2px">開発ログ / 一号</div></div><button class="btn-open primary" onclick="openFile('https://docs.google.com/document/d/1ZK9FB2JQGJibeZ9k4v50-tK6DLvAVFPQa-NgIRhWYno/edit')">開く</button></div>
+<div class="card">
+<div class="file-item"><div class="file-icon" style="background:#dbeafe">📝</div><div style="flex:1"><div style="font-weight:800;font-size:14px">ベースルール</div><div style="font-size:11px;color:#6b7280;margin-top:2px">ベースルール詳細</div></div><button class="btn-open primary" onclick="window.open('https://docs.google.com/document/d/1Ajt1l8abJflgztV0tybOsECRRWpa8W_dWjhlymztHDo/edit','_blank')">開く</button></div>
+<div class="file-item"><div class="file-icon" style="background:#fce7f3">📝</div><div style="flex:1"><div style="font-weight:800;font-size:14px">開発・作業ログ</div><div style="font-size:11px;color:#6b7280;margin-top:2px">開発ログ</div></div><button class="btn-open primary" onclick="window.open('https://docs.google.com/document/d/1ZK9FB2JQGJibeZ9k4v50-tK6DLvAVFPQa-NgIRhWYno/edit','_blank')">開く</button></div>
 </div>
-
-<div class="file-group-title">⚙️ システム / GAS・Web・カレンダー</div>
-<div class="card" id="group-system">
-<div class="file-item"><div class="file-icon" style="background:#ffedd5">⚙️</div><div style="flex:1"><div style="font-weight:800;font-size:14px">GAS v4 LockService</div><div style="font-size:11px;color:#6b7280;margin-top:2px">TASKS/MONEY/カレンダー連携API</div></div><button class="btn-open primary" onclick="openFile('https://script.google.com/macros/s/AKfycbxeY0ollMVYWklFepuBRnbjdFc9gEu70WWnF_gdf_RRUfAcFTnL6PXdwAGMj0cXPBZueA/exec')">開く</button></div>
-<div class="file-item"><div class="file-icon" style="background:#e0e7ff">🌐</div><div style="flex:1"><div style="font-weight:800;font-size:14px">mytask-app</div><div style="font-size:11px;color:#6b7280;margin-top:2px">タスク管理フロント / GitHub Pages</div></div><button class="btn-open primary" onclick="openFile('https://ryuma0210.github.io/mytask-app/')">開く</button></div>
-<div class="file-item"><div class="file-icon" style="background:#f3f4f6">📅</div><div style="flex:1"><div style="font-weight:800;font-size:14px">タスクカレンダー</div><div style="font-size:11px;color:#6b7280;margin-top:2px">個人タスク専用 / Google Calendar</div></div><button class="btn-open" onclick="alert('カレンダーID: 4b9c3503...@group.calendar.google.com')">詳細</button></div>
+<div class="file-group-title">⚙️ システム / GAS・Web</div>
+<div class="card">
+<div class="file-item"><div class="file-icon" style="background:#ffedd5">⚙️</div><div style="flex:1"><div style="font-weight:800;font-size:14px">GAS v4 LockService</div><div style="font-size:11px;color:#6b7280;margin-top:2px">TASKS/MONEY/カレンダー連携API</div></div><button class="btn-open primary" onclick="window.open('https://script.google.com/macros/s/AKfycbxeY0ollMVYWklFepuBRnbjdFc9gEu70WWnF_gdf_RRUfAcFTnL6PXdwAGMj0cXPBZueA/exec','_blank')">開く</button></div>
+<div class="file-item"><div class="file-icon" style="background:#e0e7ff">🌐</div><div style="flex:1"><div style="font-weight:800;font-size:14px">mytask-app</div><div style="font-size:11px;color:#6b7280;margin-top:2px">タスク管理フロント / GitHub Pages</div></div><button class="btn-open primary" onclick="window.open('https://ryuma0210.github.io/mytask-app/','_blank')">開く</button></div>
 </div>
-
-<div style="margin:20px 10px;padding:14px;background:#fff;border-radius:14px;border:1px dashed #d1d5db;text-align:center">
-<div style="font-size:12px;font-weight:700;color:#374151">1号への実装依頼メモ</div>
-<div style="font-size:11px;color:#6b7280;margin-top:6px;line-height:1.6">この画面は 03_ファイル所在一覧スプレッドシートを参照元としています。<br>今後表示する内容はあとから参照先を決めます。現状は固定11件 + GAS連携で動的取得に対応。</div>
-</div>
-
 </main>
 <script>
-const GAS_URL = 'https://script.google.com/macros/s/AKfycbxeY0ollMVYWklFepuBRnbjdFc9gEu70WWnF_gdf_RRUfAcFTnL6PXdwAGMj0cXPBZueA/exec';
 const drawer=document.getElementById('drawer'),overlay=document.getElementById('overlay'),btn=document.getElementById('btnMenu');
 function openDrawer(){drawer.classList.add('show');overlay.classList.add('show')}
 function closeDrawer(){drawer.classList.remove('show');overlay.classList.remove('show')}
 btn.addEventListener('click',openDrawer);overlay.addEventListener('click',closeDrawer);
-
-function openFile(url){
-  if(url.startsWith('http')){ window.open(url, '_blank'); }
-  else{ window.open('https://drive.google.com/open?id='+url, '_blank'); }
-}
-
-async function loadFromGas(){
-  try{
-    const res = await fetch(GAS_URL + '?action=fileLocations');
-    const files = await res.json();
-    if(Array.isArray(files) && files.length>0){
-      document.getElementById('fileCount').textContent = files.length;
-      alert('GASから'+files.length+'件取得しました。スプレッドシート側で内容を更新するとこの画面に反映できます。\n（一号：今後SS参照で動的描画に切替可能）');
-    } else {
-      alert('GAS側のfileLocationsが未設定です。固定表示11件を使用中。');
-    }
-  }catch(e){
-    alert('GAS取得失敗。固定表示を使用中。');
-  }
-}
 </script>
 </body></html>

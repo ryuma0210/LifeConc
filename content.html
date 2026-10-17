@@ -1,95 +1,76 @@
-<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>CONTACTS - LifeOS</title>
-<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,'Noto Sans JP',sans-serif;background:#f2f4f8;color:#111827} :root{--primary:#1e3a8a}
+<!DOCTYPE html><html lang="ja"><head><meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0"><title>KEEP - LifeOS FINAL</title>
+<style>*{box-sizing:border-box;margin:0;padding:0}body{font-family:-apple-system,BlinkMacSystemFont,'Noto Sans JP',sans-serif;background:#f2f4f8;color:#111827} :root{--primary:#1e3a8a;--keep:#fbbc04}
 .topbar{position:sticky;top:0;z-index:50;background:#fff;height:60px;display:flex;align-items:center;justify-content:space-between;padding:0 14px;border-bottom:1px solid #e5e7eb}
 .hamburger{width:48px;height:48px;border:none;background:#fff;border-radius:14px;display:grid;place-items:center}
 .logo{display:flex;align-items:center;gap:12px;font-weight:900;font-size:22px}.logo-L{width:40px;height:40px;background:var(--primary);color:#fff;border-radius:12px;display:grid;place-items:center;font-size:20px;font-weight:900}
 .drawer{position:fixed;top:0;left:0;bottom:0;width:88%;max-width:340px;background:#fff;z-index:70;transform:translateX(-100%);transition:.3s;display:flex;flex-direction:column}.drawer.show{transform:translateX(0)}.overlay{position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:60;opacity:0;pointer-events:none;transition:.25s}.overlay.show{opacity:1;pointer-events:auto}
-.drawer-head{padding:22px 16px;border-bottom:1px solid #f1f5f9;display:flex;gap:14px;align-items:center}.drawer-avatar{width:52px;height:52px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font-weight:900;font-size:18px}.drawer-body{flex:1;overflow:auto;padding:14px 10px}.drawer-item{display:flex;align-items:center;gap:14px;padding:16px 12px;border-radius:14px;text-decoration:none;color:inherit}.drawer-item.active{background:#f1f5ff}.drawer-item-icon{width:44px;height:44px;border-radius:14px;background:#f3f4f6;display:grid;place-items:center;font-size:20px}.drawer-item-label{font-size:16px;font-weight:700}
-.main{padding:0 0 90px}.banner{background:var(--primary);color:#fff;padding:18px 16px 14px;display:flex;align-items:flex-end;justify-content:space-between}.banner-kicker{font-size:11px;letter-spacing:0.08em;opacity:0.7;font-weight:700}.banner-title{font-size:26px;font-weight:900}.banner-count{font-size:34px;font-weight:900}.banner-count-sub{font-size:11px;opacity:0.7}
+.drawer-head{padding:22px 16px;border-bottom:1px solid #f1f5f9;display:flex;gap:14px;align-items:center}.drawer-avatar{width:52px;height:52px;border-radius:50%;background:var(--primary);color:#fff;display:grid;place-items:center;font-weight:900;font-size:18px}
+.drawer-body{flex:1;overflow:auto;padding:14px 10px}.drawer-body a{text-decoration:none;color:inherit}
+.drawer-item{display:flex;align-items:center;gap:14px;padding:16px 12px;border-radius:14px;text-decoration:none;color:inherit}.drawer-item.active{background:#f1f5ff}.drawer-item-icon{width:44px;height:44px;border-radius:14px;background:#f3f4f6;display:grid;place-items:center;font-size:20px}.drawer-item-label{font-size:16px;font-weight:700}
+.main{padding:0 0 90px}.banner{background:#fff;padding:18px 16px 14px;display:flex;align-items:flex-end;justify-content:space-between;border-bottom:1px solid #e5e7eb}
+.banner-kicker{font-size:11px;letter-spacing:0.08em;color:#fbbc04;font-weight:800}.banner-title{font-size:26px;font-weight:900;color:#202124;display:flex;gap:8px;align-items:center}.banner-count{font-size:34px;font-weight:900;color:#202124}.banner-count-sub{font-size:11px;color:#5f6368}
 .list-wrap{padding:12px 10px}
-.filter-bar{display:flex;gap:10px;margin-bottom:14px}
-.filter-btn{flex:1;height:44px;border-radius:999px;border:1.5px solid #e5e7eb;background:#fff;color:#6b7280;font-size:14px;font-weight:700}
+.filter-bar{display:flex;gap:8px;margin-bottom:14px;overflow-x:auto}
+.filter-btn{flex:0 0 auto;min-width:64px;height:44px;padding:0 16px;border-radius:999px;border:1.5px solid #e5e7eb;background:#fff;color:#6b7280;font-size:13px;font-weight:700}
 .filter-btn.active{background:var(--primary);color:#fff;border-color:var(--primary)}
-.task-card{background:#fff;border-radius:18px;border:1px solid #eef2f7;box-shadow:0 2px 12px rgba(0,0,0,0.04);padding:16px;margin-bottom:12px;border-left:5px solid var(--primary)}
-.task-title{font-size:17px;font-weight:800}
-.task-meta{font-size:12px;color:#6b7280;margin-top:6px}
+.keep-card{background:#fff;border-radius:16px;border:1px solid #e8eaed;box-shadow:0 1px 3px rgba(0,0,0,0.08);padding:16px;margin-bottom:12px;position:relative;border-left:5px solid #fbbc04}
+.keep-title{font-size:16px;font-weight:800;line-height:1.4;margin-bottom:6px}
+.keep-content{font-size:13px;color:#5f6368;line-height:1.6;white-space:pre-wrap}
+.card-form{margin:14px 10px 0;background:#fff;border-radius:24px;box-shadow:0 4px 20px rgba(0,0,0,0.06);padding:20px 16px 24px;border:1px solid #eef2f7}
+label{font-size:12px;font-weight:700;color:#374151;margin:14px 0 6px;display:block}
+input[type="text"],textarea{width:100%;font-size:15px;padding:14px 16px;border:1.5px solid #e5e7eb;border-radius:12px;background:#fff;outline:none}
+.btn-google-primary{width:100%;padding:14px;border:none;border-radius:12px;background:#fbbc04;color:#202124;font-weight:900;font-size:15px;margin-top:12px;display:flex;justify-content:center;gap:8px;align-items:center}
+.pill-group{display:flex;gap:8px;flex-wrap:wrap;margin-top:6px}
+.pill{padding:10px 16px;border-radius:999px;border:1.5px solid #e5e7eb;background:#fff;font-size:13px;font-weight:700;cursor:pointer}
+.pill.active{background:var(--primary);color:#fff;border-color:var(--primary)}
 </style></head><body>
-<header class="topbar"><div style="display:flex;align-items:center;gap:12px"><button class="hamburger" id="btnMenu"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><div class="logo"><div class="logo-L">L</div> LifeOS</div></div></header>
-<div class="overlay" id="overlay"></div><nav class="drawer" id="drawer"><div class="drawer-head"><div class="drawer-avatar">S</div><div><div style="font-weight:800">Shimizu</div></div></div>
+<header class="topbar"><div style="display:flex;align-items:center;gap:12px"><button class="hamburger" id="btnMenu"><svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg></button><div class="logo"><div class="logo-L">L</div> LifeOS FINAL</div></div></header>
+<div class="overlay" id="overlay"></div><nav class="drawer" id="drawer"><div class="drawer-head"><div class="drawer-avatar">S</div><div><div style="font-weight:800">Shimizu</div><div style="font-size:11px;color:#6b7280">FINAL 9リンク統一</div></div></div>
 <div class="drawer-body">
-<a href="index.html" style="text-decoration:none;color:inherit"><div class="drawer-item"><div class="drawer-item-icon">🏠</div><div><div class="drawer-item-label">HOME</div></div></div></a>
-<a href="tasks.html" style="text-decoration:none;color:inherit"><div class="drawer-item"><div class="drawer-item-icon">✅</div><div><div class="drawer-item-label">Tasks</div></div></div></a>
-<a href="habits.html" style="text-decoration:none;color:inherit"><div class="drawer-item"><div class="drawer-item-icon">💪</div><div><div class="drawer-item-label">Habits</div></div></div></a>
-<a href="calendar.html" style="text-decoration:none;color:inherit"><div class="drawer-item"><div class="drawer-item-icon">📅</div><div><div class="drawer-item-label">Calendar</div></div></div></a>
-<a href="money.html" style="text-decoration:none;color:inherit"><div class="drawer-item"><div class="drawer-item-icon">💰</div><div><div class="drawer-item-label">Money</div></div></div></a>
-<a href="contacts.html" style="text-decoration:none;color:inherit"><div class="drawer-item active"><div class="drawer-item-icon">👥</div><div><div class="drawer-item-label">Contacts</div></div></div></a>
-<a href="content.html" style="text-decoration:none;color:inherit"><div class="drawer-item"><div class="drawer-item-icon">📝</div><div><div class="drawer-item-label">KEEP</div></div></div></a>
-<a href="others.html" style="text-decoration:none;color:inherit"><div class="drawer-item"><div class="drawer-item-icon">⚙️</div><div><div class="drawer-item-label">OTHERS</div></div></div></a>
+<a href="index.html"><div class="drawer-item"><div class="drawer-item-icon">🏠</div><div><div class="drawer-item-label">HOME</div></div></div></a>
+<a href="tasks.html"><div class="drawer-item"><div class="drawer-item-icon">✅</div><div><div class="drawer-item-label">Tasks</div></div></div></a>
+<a href="habits.html"><div class="drawer-item"><div class="drawer-item-icon">💪</div><div><div class="drawer-item-label">Habits</div></div></div></a>
+<a href="calendar.html"><div class="drawer-item"><div class="drawer-item-icon">📅</div><div><div class="drawer-item-label">Calendar</div></div></div></a>
+<a href="money.html"><div class="drawer-item"><div class="drawer-item-icon">💰</div><div><div class="drawer-item-label">Money</div></div></div></a>
+<a href="contacts.html"><div class="drawer-item"><div class="drawer-item-icon">👥</div><div><div class="drawer-item-label">Contacts</div></div></div></a>
+<a href="content.html"><div class="drawer-item active"><div class="drawer-item-icon">📝</div><div><div class="drawer-item-label">KEEP</div></div></div></a>
+<a href="files.html"><div class="drawer-item"><div class="drawer-item-icon">📁</div><div><div class="drawer-item-label">Files</div></div></div></a>
+<a href="others.html"><div class="drawer-item"><div class="drawer-item-icon">⚙️</div><div><div class="drawer-item-label">OTHERS</div></div></div></a>
 </div></nav>
 <main class="main">
-<div class="banner"><div><div class="banner-kicker">CONTACTS</div><div class="banner-title">Contacts</div></div><div style="text-align:right"><div class="banner-count">2</div><div class="banner-count-sub">要対応</div></div></div>
-
-
+<div class="banner"><div><div class="banner-kicker">KEEP / Google Keep連動 / FINAL</div><div class="banner-title">🟡 KEEP</div></div><div style="text-align:right"><div class="banner-count" id="bannerCount">1</div><div class="banner-count-sub">件</div></div></div>
 <div class="list-wrap">
   <div class="filter-bar">
-    <button class="filter-btn active" id="btnWeek" onclick="filterContacts('week')">今週</button>
-    <button class="filter-btn" id="btnAll" onclick="filterContacts('all')">全体</button>
+    <button class="filter-btn active" id="btnAll" onclick="setFilter('all')">すべて</button>
+    <button class="filter-btn" id="btnGoogle" onclick="setFilter('google')">Keep</button>
+    <button class="filter-btn" id="btnIdea" onclick="setFilter('idea')">アイデア</button>
   </div>
-  
-  <div id="contactsList">
-    <div class="task-card" data-filter="week" style="border-left-color:#ef4444">
-      <div class="task-title">しまるさん - 天草契約</div>
-      <div class="task-meta">要返信 / 期限10/19 / 今週</div>
-    </div>
-    <div class="task-card" data-filter="week" style="border-left-color:#f59e0b">
-      <div class="task-title">徳永さん - 阿蘇ルート</div>
-      <div class="task-meta">連絡待ち / 今週</div>
-    </div>
-    <div class="task-card" data-filter="all" style="border-left-color:#9ca3af;display:none">
-      <div class="task-title">佐藤さん - LOMA打合せ</div>
-      <div class="task-meta">先週対応済み / 全体表示のみ</div>
-    </div>
-    <div class="task-card" data-filter="all" style="border-left-color:#9ca3af;display:none">
-      <div class="task-title">田中さん - 資料送付</div>
-      <div class="task-meta">先月 / 全体表示のみ</div>
+  <div id="keepList">
+    <div class="keep-card">
+      <div class="task-title" style="font-size:16px;font-weight:800">天草の夕日 × バイク</div>
+      <div class="keep-content">天草の夕日スポット3選
+バイクで回るルート</div>
+      <div style="margin-top:10px;font-size:11px;color:#9aa0a6">#AIRA #天草 / Google Keep連動</div>
     </div>
   </div>
-  <div style="margin-top:12px;text-align:center;font-size:11px;color:#9ca3af" id="filterInfo">今週：2件表示中</div>
 </div>
-
-
+<div class="card-form">
+  <div style="display:flex;align-items:center;gap:12px;margin-bottom:16px"><div style="width:36px;height:36px;background:#fbbc04;border-radius:50%;display:grid;place-items:center;font-weight:900">＋</div><div style="font-size:18px;font-weight:800">新規メモ</div></div>
+  <label>タイトル</label><input type="text" id="keepTitle" placeholder="Google Keepに保存されます">
+  <label>カテゴリ</label><div class="pill-group"><div class="pill active">💡 アイデア</div><div class="pill">📝 メモ</div><div class="pill">✨ 気づき</div></div>
+  <label>内容</label><textarea placeholder="Google Keepに保存されます"></textarea>
+  <button class="btn-google-primary">Google Keepに保存</button>
+</div>
 </main>
-
 <script>
 const drawer=document.getElementById('drawer'),overlay=document.getElementById('overlay'),btn=document.getElementById('btnMenu');
 function openDrawer(){drawer.classList.add('show');overlay.classList.add('show')}
 function closeDrawer(){drawer.classList.remove('show');overlay.classList.remove('show')}
 btn.addEventListener('click',openDrawer);overlay.addEventListener('click',closeDrawer);
-
-function filterContacts(type){
-  const btnWeek=document.getElementById('btnWeek');
-  const btnAll=document.getElementById('btnAll');
-  const cards=document.querySelectorAll('#contactsList .task-card');
-  const info=document.getElementById('filterInfo');
-  const countBanner=document.querySelector('.banner-count');
-  
-  if(type==='week'){
-    btnWeek.classList.add('active');
-    btnAll.classList.remove('active');
-    cards.forEach(c=>{
-      if(c.dataset.filter==='week'){ c.style.display='block'; }
-      else { c.style.display='none'; }
-    });
-    info.textContent='今週：2件表示中';
-    if(countBanner) countBanner.textContent='2';
-  }else{
-    btnAll.classList.add('active');
-    btnWeek.classList.remove('active');
-    cards.forEach(c=>{ c.style.display='block'; });
-    info.textContent='全体：4件表示中';
-    if(countBanner) countBanner.textContent='4';
-  }
+function setFilter(type){
+  document.querySelectorAll('.filter-bar .filter-btn').forEach(b=>b.classList.remove('active'));
+  const map={all:'btnAll',google:'btnGoogle',idea:'btnIdea'};
+  if(map[type]) document.getElementById(map[type]).classList.add('active');
 }
 </script>
-
 </body></html>
